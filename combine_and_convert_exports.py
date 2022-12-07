@@ -299,8 +299,10 @@ def _print_help() -> None:
     print("=" * 80)
     print("The default values are:")
     print("Verbose:\033[1m\033[4m\033[94m false\033[0m")
-    print("Input folder path: \033[1m\033[4m\033[94m" + str(DEFAULT_INPUT_FOLDER_PATH) + "\033[0m")
-    print("Output file path: \033[1m\033[4m\033[94m" + str(DEFAULT_OUTPUT_FILE_PATH) + "\033[0m")
+    print("Input folder path: \033[1m\033[4m\033[94m" +
+          str(DEFAULT_INPUT_FOLDER_PATH) + "\033[0m")
+    print("Output file path: \033[1m\033[4m\033[94m" +
+          str(DEFAULT_OUTPUT_FILE_PATH) + "\033[0m")
     print("=" * 80)
     print("Examples:")
     print("python3 combine_and_convert_exports.py -i "
