@@ -73,11 +73,11 @@ import time
 
 
 # Function to load the JSON files from the folder and time the process
-def get_json_file_paths(from_folder_full_path: str, verbose: bool) -> list:
+def get_json_file_paths(from_folder_full_path: str, is_verbose: bool) -> list:
     """
     This function gets the full paths to all the JSON files in the folder
     :param from_folder_full_path: The full path to the folder with the JSON files
-    :param verbose: If True, then show progress
+    :param is_verbose: If True, then show progress
     :return: A list of JSON file paths
     """
     # Start the timer
@@ -86,14 +86,14 @@ def get_json_file_paths(from_folder_full_path: str, verbose: bool) -> list:
     path_to_json_files = from_folder_full_path
     # Get the list of JSON files
     json_files_list = glob.glob(path_to_json_files + "/*.json")
-    if verbose:
+    if is_verbose:
         print("Loading JSON files from " + from_folder_full_path)
         print("Total JSON files found: " + str(len(json_files_list)))
         print("JSON files: " + str(json_files_list))
     # Get the total number of JSON files
     total_number_of_json_files = len(json_files_list)
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Loading the JSON files...")
     # Stop the timer
@@ -101,7 +101,7 @@ def get_json_file_paths(from_folder_full_path: str, verbose: bool) -> list:
     # Calculate the total time taken
     total_time_taken = end_time - start_time
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Total JSON files loaded: " + str(total_number_of_json_files))
         print("Total time taken to load the JSON files: {} seconds".format(total_time_taken))
@@ -112,11 +112,11 @@ def get_json_file_paths(from_folder_full_path: str, verbose: bool) -> list:
 
 
 # Function to get the data from the JSON files, time the process and show progress
-def get_data_from_json_files(json_files_path_list: list, verbose: bool) -> list:
+def get_data_from_json_files(json_files_path_list: list, is_verbose: bool) -> list:
     """
     This function gets the raw data from the JSON files
     :param json_files_path_list: A list of JSON file paths
-    :param verbose: If True, then show progress
+    :param is_verbose: If True, then show progress
     :return: A list of JSON data
     """
     # Start the timer
@@ -126,12 +126,12 @@ def get_data_from_json_files(json_files_path_list: list, verbose: bool) -> list:
     # Get the total number of JSON files
     total_number_of_json_files = len(json_files_path_list)
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Getting the data from the JSON files...")
     # Loop through the list of JSON files
     for json_file in json_files_path_list:
-        if verbose:
+        if is_verbose:
             print("Loading JSON file: " + json_file)
         # Open the JSON file
         with open(json_file, "r", encoding="utf-8") as f:
@@ -156,7 +156,7 @@ def get_data_from_json_files(json_files_path_list: list, verbose: bool) -> list:
     # Calculate the total time taken
     total_time_taken = end_time - start_time
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Total data loaded: " + str(len(raw_data_list)))
         print("Total time taken to load the data: {} seconds".format(total_time_taken))
@@ -186,12 +186,12 @@ def get_data_from_json_files(json_files_path_list: list, verbose: bool) -> list:
 
 
 # Function to convert the data to the required format, time the process and show progress
-def convert_data_to_required_format(raw_data_list: list, verbose: bool) -> list:
+def convert_data_to_required_format(raw_data_list: list, is_verbose: bool) -> list:
     """
     This function converts the data to the required format by removing the new line characters and replacing the double
     quotes with single quotes
     :param raw_data_list: A list of JSON data
-    :param verbose: If True, then show progress
+    :param is_verbose: If True, then show progress
     :return: A list of converted data
     """
     # Start the timer
@@ -201,7 +201,7 @@ def convert_data_to_required_format(raw_data_list: list, verbose: bool) -> list:
     # Get the total number of JSON files
     total_number_of_json_files = len(raw_data_list)
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Converting the data to the required format...")
     # Loop through the list of JSON files
@@ -222,7 +222,7 @@ def convert_data_to_required_format(raw_data_list: list, verbose: bool) -> list:
     # Calculate the total time taken
     total_time_taken = end_time - start_time
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Total data converted: " + str(len(converted_data_list)))
         print("Total time taken to convert the data: {} seconds".format(total_time_taken))
@@ -239,15 +239,15 @@ def convert_data_to_required_format(raw_data_list: list, verbose: bool) -> list:
 
 
 # Function to write the data to a text file, time the process and show progress
-def write_data_to_text_file(converted_data_list: list, output_file_path: str, verbose: bool) -> None:
+def write_data_to_text_file(converted_data_list: list, output_path: str, is_verbose: bool) -> None:
     """
     This function writes the data to a text file
     :param converted_data_list: A list of converted data
-    :param output_file_path: The output file path
-    :param verbose: If True, then show progress
+    :param output_path: The output file path
+    :param is_verbose: If True, then show progress
     :return: None
     """
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Writing the data to a text file...")
     # Start the timer
@@ -255,11 +255,11 @@ def write_data_to_text_file(converted_data_list: list, output_file_path: str, ve
     # Get the total number of JSON files
     total_number_of_json_files = len(converted_data_list)
     # Print the message
-    if verbose:
+    if is_verbose:
         print("Writing the data to a text file...")
-        print("Output file path: " + output_file_path)
+        print("Output file path: " + output_path)
     # Open the output file
-    with open(output_file_path, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         # Loop through the list of converted data
         for converted_data in converted_data_list:
             # Write the converted data to the output file
@@ -269,7 +269,7 @@ def write_data_to_text_file(converted_data_list: list, output_file_path: str, ve
     # Calculate the total time taken
     total_time_taken = end_time - start_time
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Total data written: " + str(len(converted_data_list)))
         print("Total time taken to write the data: {} seconds".format(total_time_taken))
@@ -278,34 +278,34 @@ def write_data_to_text_file(converted_data_list: list, output_file_path: str, ve
 
 
 # Function to run the program, time the process and show progress
-def run_program(input_file_path: str, output_file_path: str, verbose: bool) -> None:
+def run_program(input_path: str, output_path: str, is_verbose: bool) -> None:
     """
     This function runs the program
-    :param input_file_path: The input file path
-    :param output_file_path: The output file path
-    :param verbose: If True, then show progress
+    :param input_path: The input folder path
+    :param output_path: The output file path
+    :param is_verbose: If True, then show progress
     :return: None
     """
     # Start the timer
     start_time = time.time()
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Running the program...")
     # Load the JSON file paths
-    json_file_paths = get_json_file_paths(input_file_path, verbose)
+    json_file_paths = get_json_file_paths(input_path, is_verbose)
     # Load the JSON files
-    raw_data_list = get_data_from_json_files(json_file_paths, verbose)
+    raw_data_list = get_data_from_json_files(json_file_paths, is_verbose)
     # Convert the data to the required format
-    converted_data_list = convert_data_to_required_format(raw_data_list, verbose)
+    converted_data_list = convert_data_to_required_format(raw_data_list, is_verbose)
     # Write the data to a text file
-    write_data_to_text_file(converted_data_list, output_file_path, verbose)
+    write_data_to_text_file(converted_data_list, output_path, is_verbose)
     # Stop the timer
     end_time = time.time()
     # Calculate the total time taken
     total_time_taken = end_time - start_time
     # Print the message
-    if verbose:
+    if is_verbose:
         print("----------------------------------------")
         print("Total time taken to run the program: {} seconds".format(total_time_taken))
         print("----------------------------------------")
@@ -344,8 +344,8 @@ if __name__ == "__main__":
             print("\033[1m\033[4m\033[94m-v\033[0m, \033[1m\033[4m\033[94m--verbose\033[0m: Verbose (True or False)")
             print("\033[1m\033[4m\033[94m-h\033[0m, \033[1m\033[4m\033[94m--help\033[0m: Print this help text")
             print("All the parameters are\033[1m\033[4m\033[94m optional\033[0m")
-            print("If the parameters are not passed, then the program will use the "
-                  "\033[1m\033[4m\033[94mdefault values\033[0m")
+            print("If the parameters are not passed, then the program will use the"
+                  "\033[1m\033[4m\033[94m default values\033[0m")
             print("=" * 80)
             print("The default values are:")
             print("Verbose:\033[1m\033[4m\033[94m false\033[0m")
