@@ -282,6 +282,39 @@ def write_data_to_text_file(converted_data_list: list, output_path: str, is_verb
             round((total_time_taken / total_number_of_json_files), 2)))
 
 
+def _print_help() -> None:
+    print("\033[1m\033[4m\033[94mCombine and convert exports\033[0m")
+    print("Combine and convert exports from Discord")
+    print("Usage: python3 combine_and_convert_exports.py "
+          "-i <input_folder_path> -o <output_file_path> -v <true/false>")
+    print("=" * 80)
+    print("Options:")
+    print("\033[1m\033[4m\033[94m-i\033[0m, \033[1m\033[4m\033[94m--input\033[0m: Input folder path")
+    print("\033[1m\033[4m\033[94m-o\033[0m, \033[1m\033[4m\033[94m--output\033[0m: Output file path")
+    print("\033[1m\033[4m\033[94m-v\033[0m, \033[1m\033[4m\033[94m--verbose\033[0m: Verbose (True or False)")
+    print("\033[1m\033[4m\033[94m-h\033[0m, \033[1m\033[4m\033[94m--help\033[0m: Print this help text")
+    print("All the parameters are\033[1m\033[4m\033[94m optional\033[0m")
+    print("If the parameters are not passed, then the program will use the"
+          "\033[1m\033[4m\033[94m default values\033[0m")
+    print("=" * 80)
+    print("The default values are:")
+    print("Verbose:\033[1m\033[4m\033[94m false\033[0m")
+    print("Input folder path: \033[1m\033[4m\033[94m" + str(DEFAULT_INPUT_FOLDER_PATH) + "\033[0m")
+    print("Output file path: \033[1m\033[4m\033[94m" + str(DEFAULT_OUTPUT_FILE_PATH) + "\033[0m")
+    print("=" * 80)
+    print("Examples:")
+    print("python3 combine_and_convert_exports.py -i "
+          "/home/user/Downloads -o /home/user/Downloads/output.txt -v True")
+    print("python3 combine_and_convert_exports.py -i /home/user/Downloads -o /home/user/Downloads/output.txt")
+    print("python3 combine_and_convert_exports.py -i /home/user/Downloads -v False")
+    print("python3 combine_and_convert_exports.py -i /home/user/Downloads")
+    print("python3 combine_and_convert_exports.py -v True")
+    print("python3 combine_and_convert_exports.py")
+    print("python3 combine_and_convert_exports.py -h")
+    print("python3 combine_and_convert_exports.py --help")
+    print("python3 combine_and_convert_exports.py -o /home/user/Downloads/output.txt")
+
+
 # Function to run the program, time the process and show progress
 def run_program(input_path: str, output_path: str, is_verbose: bool) -> None:
     """
@@ -340,45 +373,7 @@ if __name__ == "__main__":
         # Check if the help parameter is passed
         if "-h" in parameters or "--help" in parameters:
             # Print the help message
-            print("\033[1m\033[4m\033[94mCombine and convert exports\033[0m")
-            print("Combine and convert exports from Discord")
-            print("Usage: python3 combine_and_convert_exports.py "
-                  "-i <input_folder_path> -o <output_file_path> -v <true/false>")
-            print("=" * 80)
-            print("Options:")
-            print(
-                "\033[1m\033[4m\033[94m-i\033[0m, \033[1m\033[4m\033[94m--input\033[0m: Input folder path")
-            print(
-                "\033[1m\033[4m\033[94m-o\033[0m, \033[1m\033[4m\033[94m--output\033[0m: Output file path")
-            print(
-                "\033[1m\033[4m\033[94m-v\033[0m, \033[1m\033[4m\033[94m--verbose\033[0m: Verbose (True or False)")
-            print(
-                "\033[1m\033[4m\033[94m-h\033[0m, \033[1m\033[4m\033[94m--help\033[0m: Print this help text")
-            print(
-                "All the parameters are\033[1m\033[4m\033[94m optional\033[0m")
-            print("If the parameters are not passed, then the program will use the"
-                  "\033[1m\033[4m\033[94m default values\033[0m")
-            print("=" * 80)
-            print("The default values are:")
-            print("Verbose:\033[1m\033[4m\033[94m false\033[0m")
-            print("Input folder path: \033[1m\033[4m\033[94m" +
-                  str(DEFAULT_INPUT_FOLDER_PATH) + "\033[0m")
-            print("Output file path: \033[1m\033[4m\033[94m" +
-                  str(DEFAULT_OUTPUT_FILE_PATH) + "\033[0m")
-            print("=" * 80)
-            print("Examples:")
-            print("python3 combine_and_convert_exports.py -i "
-                  "/home/user/Downloads -o /home/user/Downloads/output.txt -v True")
-            print("python3 combine_and_convert_exports.py -i /home/user/Downloads -o /home/user/Downloads/output.txt")
-            print(
-                "python3 combine_and_convert_exports.py -i /home/user/Downloads -v False")
-            print("python3 combine_and_convert_exports.py -i /home/user/Downloads")
-            print("python3 combine_and_convert_exports.py -v True")
-            print("python3 combine_and_convert_exports.py")
-            print("python3 combine_and_convert_exports.py -h")
-            print("python3 combine_and_convert_exports.py --help")
-            print(
-                "python3 combine_and_convert_exports.py -o /home/user/Downloads/output.txt")
+            _print_help()
             # Exit the program
             sys.exit()
         # Check if the input folder path is passed
@@ -414,9 +409,12 @@ if __name__ == "__main__":
         verbose = False
 
     # Check if the output folder exists
-    if not os.path.exists(os.path.dirname(output_file_path)):
+    # output_folder_path is path_to_folder/output_file_name.txt
+    # So, we need to remove the output_file_name.txt from the path
+    output_folder_path = "/".join(output_file_path.split("/")[:-1])
+    if not os.path.exists(os.path.dirname(output_folder_path)):
         # Create the output folder
-        os.makedirs(os.path.dirname(output_file_path))
+        os.makedirs(os.path.dirname(output_folder_path))
 
     # Run the program
     run_program(input_folder_path, output_file_path, verbose)
