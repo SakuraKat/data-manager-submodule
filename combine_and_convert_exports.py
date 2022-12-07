@@ -104,7 +104,8 @@ def get_json_file_paths(from_folder_full_path: str, is_verbose: bool) -> list:
     if is_verbose:
         print("----------------------------------------")
         print("Total JSON files loaded: " + str(total_number_of_json_files))
-        print("Total time taken to load the JSON files: {} seconds".format(total_time_taken))
+        print("Total time taken to load the JSON files: {} seconds".format(
+            total_time_taken))
         print("Average time taken to load a JSON file: {} seconds".format(round(
             (total_time_taken / total_number_of_json_files), 2)))
     # Return the list of JSON files
@@ -164,7 +165,8 @@ def get_data_from_json_files(json_files_path_list: list, is_verbose: bool) -> li
             round((total_time_taken / total_number_of_json_files), 2)))
         print("----------------------------------------")
         # print the number of authors
-        print("Number of authors: " + str(len(set([data[0] for data in raw_data_list]))))
+        print("Number of authors: " +
+              str(len(set([data[0] for data in raw_data_list]))))
         # print the number of messages
         print("Number of messages: " + str(len(raw_data_list)))
         # Find all the authors
@@ -216,7 +218,8 @@ def convert_data_to_required_format(raw_data_list: list, is_verbose: bool) -> li
             # Only add the message if it is not empty
             if message != "":
                 # Append the message author name and message content to the converted data list
-                converted_data_list.append(message_author_name + ": " + message + "\n")
+                converted_data_list.append(
+                    message_author_name + ": " + message + "\n")
     # Stop the timer
     end_time = time.time()
     # Calculate the total time taken
@@ -225,12 +228,14 @@ def convert_data_to_required_format(raw_data_list: list, is_verbose: bool) -> li
     if is_verbose:
         print("----------------------------------------")
         print("Total data converted: " + str(len(converted_data_list)))
-        print("Total time taken to convert the data: {} seconds".format(total_time_taken))
+        print("Total time taken to convert the data: {} seconds".format(
+            total_time_taken))
         print("Average time taken to convert a JSON file: {} seconds".format(
             round((total_time_taken / total_number_of_json_files), 2)))
         print("----------------------------------------")
         # Print the number of lines removed
-        print("Number of lines removed: " + str(len(raw_data_list) - len(converted_data_list)))
+        print("Number of lines removed: " +
+              str(len(raw_data_list) - len(converted_data_list)))
         # Print the number of lines removed per author
         print("Number of lines removed per author: " + str(
             (len(raw_data_list) - len(converted_data_list)) / len(set([data[0] for data in raw_data_list]))))
@@ -297,7 +302,8 @@ def run_program(input_path: str, output_path: str, is_verbose: bool) -> None:
     # Load the JSON files
     raw_data_list = get_data_from_json_files(json_file_paths, is_verbose)
     # Convert the data to the required format
-    converted_data_list = convert_data_to_required_format(raw_data_list, is_verbose)
+    converted_data_list = convert_data_to_required_format(
+        raw_data_list, is_verbose)
     # Write the data to a text file
     write_data_to_text_file(converted_data_list, output_path, is_verbose)
     # Stop the timer
@@ -307,7 +313,8 @@ def run_program(input_path: str, output_path: str, is_verbose: bool) -> None:
     # Print the message
     if is_verbose:
         print("----------------------------------------")
-        print("Total time taken to run the program: {} seconds".format(total_time_taken))
+        print("Total time taken to run the program: {} seconds".format(
+            total_time_taken))
         print("----------------------------------------")
         print("Program finished successfully!")
         print("----------------------------------------")
@@ -339,30 +346,39 @@ if __name__ == "__main__":
                   "-i <input_folder_path> -o <output_file_path> -v <true/false>")
             print("=" * 80)
             print("Options:")
-            print("\033[1m\033[4m\033[94m-i\033[0m, \033[1m\033[4m\033[94m--input\033[0m: Input folder path")
-            print("\033[1m\033[4m\033[94m-o\033[0m, \033[1m\033[4m\033[94m--output\033[0m: Output file path")
-            print("\033[1m\033[4m\033[94m-v\033[0m, \033[1m\033[4m\033[94m--verbose\033[0m: Verbose (True or False)")
-            print("\033[1m\033[4m\033[94m-h\033[0m, \033[1m\033[4m\033[94m--help\033[0m: Print this help text")
-            print("All the parameters are\033[1m\033[4m\033[94m optional\033[0m")
+            print(
+                "\033[1m\033[4m\033[94m-i\033[0m, \033[1m\033[4m\033[94m--input\033[0m: Input folder path")
+            print(
+                "\033[1m\033[4m\033[94m-o\033[0m, \033[1m\033[4m\033[94m--output\033[0m: Output file path")
+            print(
+                "\033[1m\033[4m\033[94m-v\033[0m, \033[1m\033[4m\033[94m--verbose\033[0m: Verbose (True or False)")
+            print(
+                "\033[1m\033[4m\033[94m-h\033[0m, \033[1m\033[4m\033[94m--help\033[0m: Print this help text")
+            print(
+                "All the parameters are\033[1m\033[4m\033[94m optional\033[0m")
             print("If the parameters are not passed, then the program will use the"
                   "\033[1m\033[4m\033[94m default values\033[0m")
             print("=" * 80)
             print("The default values are:")
             print("Verbose:\033[1m\033[4m\033[94m false\033[0m")
-            print("Input folder path: \033[1m\033[4m\033[94m" + str(DEFAULT_INPUT_FOLDER_PATH) + "\033[0m")
-            print("Output file path: \033[1m\033[4m\033[94m" + str(DEFAULT_OUTPUT_FILE_PATH) + "\033[0m")
+            print("Input folder path: \033[1m\033[4m\033[94m" +
+                  str(DEFAULT_INPUT_FOLDER_PATH) + "\033[0m")
+            print("Output file path: \033[1m\033[4m\033[94m" +
+                  str(DEFAULT_OUTPUT_FILE_PATH) + "\033[0m")
             print("=" * 80)
             print("Examples:")
             print("python3 combine_and_convert_exports.py -i "
                   "/home/user/Downloads -o /home/user/Downloads/output.txt -v True")
             print("python3 combine_and_convert_exports.py -i /home/user/Downloads -o /home/user/Downloads/output.txt")
-            print("python3 combine_and_convert_exports.py -i /home/user/Downloads -v False")
+            print(
+                "python3 combine_and_convert_exports.py -i /home/user/Downloads -v False")
             print("python3 combine_and_convert_exports.py -i /home/user/Downloads")
             print("python3 combine_and_convert_exports.py -v True")
             print("python3 combine_and_convert_exports.py")
             print("python3 combine_and_convert_exports.py -h")
             print("python3 combine_and_convert_exports.py --help")
-            print("python3 combine_and_convert_exports.py -o /home/user/Downloads/output.txt")
+            print(
+                "python3 combine_and_convert_exports.py -o /home/user/Downloads/output.txt")
             # Exit the program
             sys.exit()
         # Check if the input folder path is passed
