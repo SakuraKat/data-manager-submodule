@@ -64,6 +64,7 @@
 #       "mentions": [MentionsData]
 #     }
 #   ],
+#   [...]
 #   "messageCount": MessageCount
 # }
 # The data is in utf-8 format
@@ -77,11 +78,6 @@
 # If the message has new lines, then it is split into multiple messages
 # 4. Save the converted data to the file Output/converted.txt
 #
-# Requirements:
-# Use functions to make the code more readable
-# Use docstrings to document the functions
-# Use comments to explain the code
-#
 # Code starts here
 #
 import glob
@@ -91,7 +87,6 @@ import sys
 import time
 
 
-# Function to load the JSON files from the folder and time the process
 def get_json_file_paths(from_folder_full_path: str, is_verbose: bool) -> list:
     """
     This function gets the full paths to all the JSON files in the folder
@@ -131,7 +126,6 @@ def get_json_file_paths(from_folder_full_path: str, is_verbose: bool) -> list:
     return json_files_list
 
 
-# Function to get the data from the JSON files, time the process and show progress
 def get_data_from_json_files(json_files_path_list: list, is_verbose: bool) -> list:
     """
     This function gets the raw data from the JSON files
@@ -206,7 +200,6 @@ def get_data_from_json_files(json_files_path_list: list, is_verbose: bool) -> li
     return raw_data_list
 
 
-# Function to convert the data to the required format, time the process and show progress
 def convert_data_to_required_format(raw_data_list: list, is_verbose: bool) -> list:
     """
     This function converts the data to the required format by removing the new line characters and replacing the double
@@ -262,7 +255,7 @@ def convert_data_to_required_format(raw_data_list: list, is_verbose: bool) -> li
     return converted_data_list
 
 
-# Function to write the data to a text file, time the process and show progress
+# Function to write the data to a text file
 def write_data_to_text_file(converted_data_list: list, output_path: str, is_verbose: bool) -> None:
     """
     This function writes the data to a text file
