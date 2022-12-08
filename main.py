@@ -1,26 +1,22 @@
-# ------------------------------------------------------------------------------
-#      Copyright (c) 2022                                                      -
-#      - Katheryn Sakura (pseudonym)                                           -
-#      - https://github.com/SakuraKat                                          -
-#                                                                              -
-#      This program is free software: you can redistribute it and/or modify    -
-#      it under the terms of the GNU General Public License as published by    -
-#      the Free Software Foundation, either version 3 of the License, or       -
-#      (at your option) any later version.                                     -
-#                                                                              -
-#      This program is distributed in the hope that it will be useful,         -
-#      but WITHOUT ANY WARRANTY; without even the implied warranty of          -
-#      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -
-#      GNU General Public License for more details.                            -
-#                                                                              -
-#      You should have received a copy of the GNU General Public License       -
-#      along with this program.  If not, see <https://www.gnu.org/licenses/>.  -
-#                                                                              -
-#      Long Description:                                                       -
-#                                                                              -
-#                                                                              -
-# ------------------------------------------------------------------------------
-
+#  Copyright (c) 2022
+#  - Katheryn Sakura (pseudonym)
+#  - https://github.com/SakuraKat
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+#  Description:
+#
 # Written with the help of github copilot
 # Steps:
 # 1. Load all the JSON files from the folder JSON Files
@@ -310,9 +306,12 @@ def _print_help() -> None:
     This function prints the help message
     :rtype: None
     """
+    # Gets the file name from the command line arguments
+    file_name = sys.argv[0]
+    # Print the help message
     print("\033[1m\033[4m\033[94mCombine and convert exports\033[0m")
     print("Combine and convert exports from Discord")
-    print("Usage: python3 combine_and_convert_exports.py "
+    print("Usage: " + file_name +
           "-i <input_folder_path> -o <output_file_path> -v <true/false>")
     print("=" * 80)
     print("Options:")
@@ -332,16 +331,16 @@ def _print_help() -> None:
           str(DEFAULT_OUTPUT_FILE_PATH) + "\033[0m")
     print("=" * 80)
     print("Examples:")
-    print("python3 combine_and_convert_exports.py -i "
+    print("python3 " + file_name + " -i "
           "/home/user/Downloads -o /home/user/Downloads/output.txt -v True")
-    print("python3 combine_and_convert_exports.py -i /home/user/Downloads -o /home/user/Downloads/output.txt")
-    print("python3 combine_and_convert_exports.py -i /home/user/Downloads -v False")
-    print("python3 combine_and_convert_exports.py -i /home/user/Downloads")
-    print("python3 combine_and_convert_exports.py -v True")
-    print("python3 combine_and_convert_exports.py")
-    print("python3 combine_and_convert_exports.py -h")
-    print("python3 combine_and_convert_exports.py --help")
-    print("python3 combine_and_convert_exports.py -o /home/user/Downloads/output.txt")
+    print("python3 " + file_name + " -i /home/user/Downloads -o /home/user/Downloads/output.txt")
+    print("python3 " + file_name + " -i /home/user/Downloads -v False")
+    print("python3 " + file_name + " -i /home/user/Downloads")
+    print("python3 " + file_name + " -v True")
+    print("python3 " + file_name + "")
+    print("python3 " + file_name + " -h")
+    print("python3 " + file_name + " --help")
+    print("python3 " + file_name + " -o /home/user/Downloads/output.txt")
 
 
 # Function to run the program, time the process and show progress
