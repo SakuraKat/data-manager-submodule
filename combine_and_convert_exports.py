@@ -1,3 +1,26 @@
+# ------------------------------------------------------------------------------
+#      Copyright (c) 2022                                                      -
+#      - Katheryn Sakura (pseudonym)                                           -
+#      - https://github.com/SakuraKat                                          -
+#                                                                              -
+#      This program is free software: you can redistribute it and/or modify    -
+#      it under the terms of the GNU General Public License as published by    -
+#      the Free Software Foundation, either version 3 of the License, or       -
+#      (at your option) any later version.                                     -
+#                                                                              -
+#      This program is distributed in the hope that it will be useful,         -
+#      but WITHOUT ANY WARRANTY; without even the implied warranty of          -
+#      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -
+#      GNU General Public License for more details.                            -
+#                                                                              -
+#      You should have received a copy of the GNU General Public License       -
+#      along with this program.  If not, see <https://www.gnu.org/licenses/>.  -
+#                                                                              -
+#      Long Description:                                                       -
+#                                                                              -
+#                                                                              -
+# ------------------------------------------------------------------------------
+
 # Written with the help of github copilot
 # Steps:
 # 1. Load all the JSON files from the folder JSON Files
@@ -283,6 +306,10 @@ def write_data_to_text_file(converted_data_list: list, output_path: str, is_verb
 
 
 def _print_help() -> None:
+    """
+    This function prints the help message
+    :rtype: None
+    """
     print("\033[1m\033[4m\033[94mCombine and convert exports\033[0m")
     print("Combine and convert exports from Discord")
     print("Usage: python3 combine_and_convert_exports.py "
