@@ -77,7 +77,8 @@ def _print_help() -> None:
     print("Examples:")
     print("python3 " + file_name + " -i "
           "/home/user/Downloads -o /home/user/Downloads/output.txt -v True")
-    print("python3 " + file_name + " -i /home/user/Downloads -o /home/user/Downloads/output.txt")
+    print("python3 " + file_name +
+          " -i /home/user/Downloads -o /home/user/Downloads/output.txt")
     print("python3 " + file_name + " -i /home/user/Downloads -v False")
     print("python3 " + file_name + " -i /home/user/Downloads")
     print("python3 " + file_name + " -v True")
@@ -105,12 +106,14 @@ def run_program(input_path: str, output_path: str, is_verbose: bool) -> None:
     # Load the JSON file paths
     json_file_paths = get_json_file_paths(input_path, is_verbose)
     # Load the JSON files
-    raw_data_list = get_data_from_discord_chat_exports_json_files(json_file_paths, is_verbose)
+    raw_data_list = get_data_from_discord_chat_exports_json_files(
+        json_file_paths, is_verbose)
     # Convert the data to the required format
     converted_data_list = convert_data_to_required_format(
         raw_data_list, is_verbose)
     # Write the data to a text file
-    write_converted_data_to_text_file(converted_data_list, output_path, is_verbose)
+    write_converted_data_to_text_file(
+        converted_data_list, output_path, is_verbose)
     # Stop the timer
     end_time = time.time()
     # Calculate the total time taken

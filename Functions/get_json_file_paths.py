@@ -98,7 +98,8 @@ if __name__ == '__main__':
     else:
         print("Invalid parameters passed. Please pass the following parameters:")
         print("1. -v or --verbose (optional)")
-        print("2. -i or --input (the full path to the folder with the JSON files) (required)")
+        print(
+            "2. -i or --input (the full path to the folder with the JSON files) (required)")
         exit(1)
     if len(sys.argv) == 2:
         verbose = False

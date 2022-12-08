@@ -155,7 +155,8 @@ def main(json_files_list: list, verbose: bool) -> None:
     :returns: None
     """
 
-    data = get_data_from_discord_chat_exports_json_files(json_files_list, verbose)
+    data = get_data_from_discord_chat_exports_json_files(
+        json_files_list, verbose)
     print(data)
 
 

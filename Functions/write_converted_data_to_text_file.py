@@ -67,7 +67,8 @@ def main(converted_data_list: list, output_path: str, verbose: bool):
     :param verbose:
     :return: None
     """
-    write_converted_data_to_text_file(converted_data_list, output_path, verbose)
+    write_converted_data_to_text_file(
+        converted_data_list, output_path, verbose)
 
 
 if __name__ == '__main__':
